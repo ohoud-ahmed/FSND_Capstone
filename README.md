@@ -18,7 +18,8 @@ Running the server
 
 $ export FLASK_APP=app $ export FLASK_DEBUG=True $ export FLASK_ENVIRONMENT=debug $ flask run
 
-Endpoints GET /actors * gets the list of all the actors * requires get:actors permission
+Endpoints
+GET /actors * gets the list of all the actors * requires get:actors permission
 
 POST /actors * creates a new actor * requires post:actor permission
 
@@ -58,16 +59,57 @@ The project has three different types of roles:
 
     Casting Assistant
         can only view the list of actors and movies .
-        has get:actors, get:movies permissions
     Casting Director
         can perform all the actions that casting assistant can
         can also create an actor and delete it
         Can also update actors and movies information
-        has patch:actor, patch:movie, post:actor, delete:actor permissions in addition to all the permissions that casting assistant role has
     Executive Producer
         can perform all the actions that casting assistant can
         can also create an movie and delete it
-        has post:movie, delete:movie permissions in addition to all the permissions that casting assistant role has
+
+Setup Auth0
+
+1. Create a new Auth0 Account
+2. Select a unique tenant domain
+3. Create a new, single page web application
+4. Create a new API
+   - in API Settings:
+     - Enable RBAC
+     - Enable Add Permissions in the Access Token
+5. Create new API permissions:
+   - `get:movies`
+   - `post:movies`
+   - `patch:movies`
+   - `delete:movies`
+   - `get:actors`
+   - `post:actors`
+   - `patch:actors`
+   - `delete:actors`
+6. Create new roles for:
+   - Casting Assistant
+     - `get:movies`
+     - `get:actors`
+   - Casting Director
+     - `get:movies`
+     - `patch:movies`
+     - `get:actors`
+     - `post:actors`
+     - `patch:actors`
+     - `delete:actors`
+   - Executive Producer
+     - `get:movies`
+     - `post:movies`
+     - `patch:movies`
+     - `delete:movies`
+     - `get:actors`
+     - `post:actors`
+     - `patch:actors`
+     - `delete:actors`
+7. Test your endpoints with [Postman](https://getpostman.com).
+   - Register 3 users - assign the Casting Assistant role to one ,Casting Director role to one and Executive Producer role to the other.
+
+Test the application by URL:
+https://capstonefp.herokuapp.com/
 
 Testing: $ python test_app.py
  
