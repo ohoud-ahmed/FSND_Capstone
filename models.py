@@ -5,8 +5,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import json
 
-database_name = "cinema"
-database_path = "postgresql://postgres:123123@localhost:5432/" + database_name
+# database_name = "cinema"
+# database_path = "postgresql://postgres:123123@localhost:5432/" + database_name
+
+database_path = os.environ['DATABASE_URL']
+if database_path.startswith("postgres://"):
+    database_path = database_path.replace("postgres://", "postgresql://", 1)
+
 
 db = SQLAlchemy()
 

@@ -13,12 +13,12 @@ class CapstoneTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_name = "cinema"
-        self.database_path = "postgresql://{}@{}/{}".format('postgres:123123', 'localhost:5432', self.database_name)
-        # database_path = os.environ['DATABASE_URL']
-        # if database_path.startswith("postgres://"):
-        #     database_path = database_path.replace(
-        #         "postgres://", "postgresql://", 1)
+        # self.database_name = "cinema"
+        # self.database_path = "postgresql://{}@{}/{}".format('postgres:123123', 'localhost:5432', self.database_name)
+        database_path = os.environ['DATABASE_URL']
+        if database_path.startswith("postgres://"):
+            database_path = database_path.replace(
+                "postgres://", "postgresql://", 1)
         setup_db(self.app, self.database_path)
 
         self.casting_assistant_header = {
