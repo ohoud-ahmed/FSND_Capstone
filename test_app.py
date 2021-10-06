@@ -28,9 +28,7 @@ class CapstoneTestCase(unittest.TestCase):
         """Executed after reach test"""
         pass
 
-
 # Test Get movies
-
 
     def test_get_movies(self):  # Test for success
         EXECUTIVE_PRODUCER = os.environ.get('EXECUTIVE_PRODUCER', None)
