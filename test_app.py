@@ -31,7 +31,6 @@ class CapstoneTestCase(unittest.TestCase):
             'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9xejZ4UzJERE9Wd3lzdXJDMDBacCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pZzI4b3hqdi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjE1OGMxYTljNjllYjIwMDcwNGE2ZDI3IiwiYXVkIjoiY2Fwc3RvbmUiLCJpYXQiOjE2MzM0NTc4NjMsImV4cCI6MTYzMzU0NDI2MywiYXpwIjoiSWhIMXg0Z2hSMVZSRGVDMWt3TExjaW15TTNNd0xnRmQiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIl19.VS9l0XUye8ZIVJJp4Pu5dcJccLC2niH7cHHKlHCw9N4iLGFc1u8GL6jQlHNRhXJYaRS-Jd52NMP7CLUHUzSlSExP4RKVUyM9FnEsdwcmRbIEtRzO6jaiIQDgaO6ZjCB-x4QE2bZxA-TqS5BAp8byeW6JwX6rAmLVoUgicd6HIMDv6xJ4I0-21c76Y9O6JfA5YpZbMWJz51nl40r9_-J-w3CzUlGR6og5Rj1RVxgwWx456rz-d82RQhnTeaaXT8sHuE4HuaiaNbY63mO7Th-l2klONL6J8ppiLjwLHj40YL07ecIusGuol_5liCC0t-4_z6N9r7_IJfYL6eawSXx07w'
         }
 
-        
         with self.app.app_context():
             self.db = SQLAlchemy()
             self.db.init_app(self.app)
@@ -116,6 +115,7 @@ class CapstoneTestCase(unittest.TestCase):
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
+
     def test_404_patch_movies(self):  # Test for error
 
         res = self.client().delete('/movies/200',
@@ -134,7 +134,8 @@ class CapstoneTestCase(unittest.TestCase):
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-    def test_404_get_actors(self):  # Test for error 
+
+    def test_404_get_actors(self):  # Test for error
         res = self.client().get('/actors/',
                                 headers=self.executive_producer_header)
         data = json.loads(res.data)
